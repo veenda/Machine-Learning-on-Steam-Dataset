@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import tensorflow as pd_tf # Placeholder
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 from sklearn.preprocessing import MinMaxScaler
@@ -106,14 +105,12 @@ def main():
     plt.plot(train_dates, train_predict[:,0], label='Prediksi Training')
 
     # Plot Prediksi Testing
-    test_dates = df['Date'].iloc[len(train_predict)+LOOK_BACK+1 + LOOK_BACK : ]
-    # Sesuaikan panjang array jika ada selisih karena slicing
-    if len(test_dates) > len(test_predict):
-        test_dates = test_dates[:len(test_predict)]
+    # Ambil tanggal sejumlah data hasil prediksi test, diambil dari urutan paling belakang
+    test_dates = df['Date'].iloc[-len(test_predict):]
     
     plt.plot(test_dates, test_predict[:,0], label='Prediksi Masa Depan (Test)', color='red')
 
-    plt.title(f'Prediksi Jumlah Pemain: {dataset[-1][0]} Players Now')
+    plt.title(f'Prediksi Jumlah Pemain: ')
     plt.xlabel('Waktu')
     plt.ylabel('Jumlah Pemain')
     plt.legend()
