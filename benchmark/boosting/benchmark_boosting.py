@@ -130,11 +130,12 @@ def main():
     # ==========================================
     # 4. VISUALISASI
     # ==========================================
+    
     test_dates = df['Date'].iloc[-len(y_test):]
     
     # Bar Chart
     plt.figure(figsize=(10, 6))
-    sns.barplot(x='MAPE (%)', y='Model', data=df_res, palette='magma')
+    sns.barplot(x='MAPE (%)', y='Model', data=df_res, palette='coolwarm')
     plt.title('Boosting Benchmark: Siapa Paling Akurat?')
     plt.tight_layout()
     plt.savefig('boosting_dclgm_bar.png')
